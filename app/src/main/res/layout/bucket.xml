@@ -52,7 +52,7 @@
                 android:id="@+id/txt_number"
                 android:fontFamily="@font/abril_fatface"
                 android:textColor="@color/black"
-                android:inputType="number"/>
+                android:inputType="numberDecimal"/>
 
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -60,7 +60,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:orientation="vertical"
+        android:orientation="horizontal"
         android:gravity="center"
         android:layout_weight="1.5">
 
@@ -68,7 +68,7 @@
             android:id="@+id/btn_add"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginHorizontal="80dp"
+            android:layout_marginHorizontal="20dp"
             android:layout_gravity="center"
             android:text="ADD"
             android:textColor="@color/white"
@@ -76,7 +76,22 @@
             android:backgroundTint="#2D0683"
             android:textStyle="bold"
             android:layout_marginBottom="15dp"
-            android:fontFamily="@font/abril_fatface"/>
+            android:fontFamily="@font/abril_fatface"
+            android:layout_weight="1"/>
+
+        <Button
+            android:id="@+id/btn_confirm"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="20dp"
+            android:layout_gravity="center"
+            android:text="confirm"
+            android:textColor="@color/white"
+            android:textSize="14dp"
+            android:textStyle="bold"
+            android:layout_marginBottom="15dp"
+            android:fontFamily="@font/abril_fatface"
+            android:layout_weight="1"/>
     </LinearLayout>
 
     <LinearLayout
