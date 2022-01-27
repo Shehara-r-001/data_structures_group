@@ -30,5 +30,12 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(new Intent(MainActivity.this, btree.class));
             }
         });
+
+        bckt_sort.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this, bucket.class));
+            }
+        });
     }
 }
