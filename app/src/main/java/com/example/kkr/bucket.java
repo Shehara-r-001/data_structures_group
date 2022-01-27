@@ -3,6 +3,7 @@ package com.example.kkr;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.text.Editable;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
@@ -15,10 +16,11 @@ import android.widget.Toast;
 import java.util.ArrayList;
 
 public class bucket extends AppCompatActivity {
-    ArrayList<String> arrayList = new ArrayList<>();
-    ArrayAdapter<String> adapter;
+    ArrayList<Editable> arrayList = new ArrayList<android.text.Editable>();
+    ArrayAdapter<Editable> adapter;
     EditText number;
     Button add;
+    Integer new_array[];
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,17 +34,19 @@ public class bucket extends AppCompatActivity {
         number = findViewById(R.id.txt_number);
         add = findViewById(R.id.btn_add);
 
-        adapter = new ArrayAdapter<String>(this, R.layout.list_item,arrayList);
+        adapter = new ArrayAdapter<Editable>(this, R.layout.list_item,arrayList);
         listView.setAdapter(adapter);
 
         add.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                arrayList.add(number.getText().toString());
+                arrayList.add(number.getText());
                 adapter.notifyDataSetChanged();
                 number.setText("");
 
-                Toast.makeText(getApplicationContext(), arrayList.toString(), Toast.LENGTH_LONG).show();
+              // new_array = (Integer[]) arrayList.toArray();
+
+               Toast.makeText(getApplicationContext(), arrayList.toString(), Toast.LENGTH_LONG).show();
             }
         });
     }
