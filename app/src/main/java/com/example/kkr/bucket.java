@@ -11,6 +11,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
@@ -18,17 +19,18 @@ import java.util.ArrayList;
 // Java program to sort an array
 // using bucket sort
 import java.util.*;
-import java.util.Collections;
 
 public class bucket extends AppCompatActivity {
     ArrayList<Float> arrayList = new ArrayList<>();
     List<Float> arrayList2 = new ArrayList<>();
 
-    ArrayAdapter<Float> adapter,adapter2;
+    ArrayAdapter<Float> adapter;
+    ArrayAdapter<Float> adapter2;
+    TextView output;
     EditText number;
-    Button add , sort, confirm;
-    Float [] newArray;
-    int i,s,array_size;
+    Button add, sort, confirm;
+    float[] std_array;
+    int i, s, array_size;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,11 +45,12 @@ public class bucket extends AppCompatActivity {
 
         number = findViewById(R.id.txt_number);
         add = findViewById(R.id.btn_add);
-        sort=findViewById(R.id.btn_save);
-        confirm=findViewById(R.id.btn_confirm);
+        sort = findViewById(R.id.btn_save);
+        confirm = findViewById(R.id.btn_confirm);
+        output = findViewById(R.id.textView2);
 
-        adapter = new ArrayAdapter<Float>(this, R.layout.list_item,arrayList);
-        adapter2 = new ArrayAdapter<Float>(this, R.layout.list_item2,arrayList2);
+        adapter = new ArrayAdapter<Float>(this, R.layout.list_item, arrayList);
+        adapter2 = new ArrayAdapter<Float>(this, R.layout.list_item2, (List<Float>) arrayList2);
 
         listView.setAdapter(adapter);
         listView2.setAdapter(adapter2);
@@ -60,16 +63,10 @@ public class bucket extends AppCompatActivity {
                 adapter.notifyDataSetChanged();
                 number.setText("");
 
-               Toast.makeText(getApplicationContext(), arrayList.toString(), Toast.LENGTH_LONG).show();
+                Toast.makeText(getApplicationContext(), arrayList.toString(), Toast.LENGTH_LONG).show();
                 s = arrayList.size();
-//                for( i = 0; i<s;i++){
-//                    newArray = new Float[s+1];
-//                    newArray[i] = arrayList.get(i);
-//
-//                    Log.d("eeeeeeeeeeeeeeeeeeeeeee", String.valueOf(newArray[i]));
-                   Log.d("eeeeeeeeeeeeeeeeeeeeeee", String.valueOf(s));
-//
-//                }
+
+                Log.d("eeeeeeeeeeeeeeeeeeeeeee", String.valueOf(s));
 
             }
         });
@@ -77,74 +74,79 @@ public class bucket extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 array_size = s;
-                for( i = 0; i<s;i++){
-                    newArray = new Float[s];
-                    newArray[i] = arrayList.get(i);
-
-                    Log.d("eeeeeeeeeeeeeeeeeeeeeee", String.valueOf(newArray[i]));
-
-               }
-
+                Toast.makeText(getApplicationContext(), "Input array confirmed. No more change", Toast.LENGTH_LONG).show();
             }
+
         });
 
         sort.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
-                //int s = arrayList.size();
-                bucketSort(newArray);
-                arrayList2 = Arrays.asList(newArray);
-                adapter2.notifyDataSetChanged();
+                final float[] arr = new float[arrayList.size()];
+                int index = 0;
+                for (final Float value: arrayList) {
+                    arr[index++] = value;
                 }
+                bucketSort(arr, arrayList.size());
+                std_array = bucketSort(arr, arrayList.size());
 
+                Toast.makeText(getApplicationContext(),Arrays.toString(std_array), Toast.LENGTH_LONG).show();
 
-
-
-//
-//                Object[] array =  arrayList.toArray();
-//
-//
-//                int length = array.length;
-//                int intArray[] = new int[length];
-//                for(int i=0; i<length; i++) {
-//                    intArray[i] = (int) array[i];
-//                }
-//                Toast.makeText(getApplicationContext(), intArray.toString(), Toast.LENGTH_SHORT).show();
+            }
         });
-
     }
 
-    public void bucketSort(Float[] arr){
-        int n = arr.length;
-        if(n <= 0) return;
-        Float min = arr[0];
-        Float max = min;
-        for(int i = 1; i < n; i++){
-            if(arr[i] > max) max = arr[i];
-            if(arr[i] < min) min = arr[i];
+    public float[] bucketSort(float[] arr, int n) {
+
+        @SuppressWarnings("unchecked")
+        ArrayList<Float>[] bucket = new ArrayList[11];
+
+        // Create empty buckets
+        for (int i = 0; i < 11; i++)
+            bucket[i] = new ArrayList<Float>();
+
+        float[] sorted_array = new float[arr.length];
+
+
+        // Add elements into the buckets
+        for (int i = 0; i < n; i++) {
+            int bucketIndex = (int) arr[i] * 10;
+            bucket[bucketIndex].add(arr[i]);
         }
 
-        /* put element into bucket*/
-        Float bucket[] = new Float[(int) (max - min + 1)];
-        for(int i = 0; i < n; i++){
-            bucket[(int) (arr[i] -min)]++;
+        // Sort the elements of each bucket
+        for (int i = 0; i < n; i++) {
+            Collections.sort((bucket[i]));
         }
 
-        int i = 0;
-        for(int b = 0, len = bucket.length; b < len; b++){
-            for(int j = 0; j < bucket[b]; j++)
-                arr[i++] = b + min;
-        }
-        Toast.makeText(getApplicationContext(), arr.toString(), Toast.LENGTH_SHORT).show();
+        // Get the sorted array
+        int index = 0;
+        for (int i = 0; i < n; i++) {
+            for (int j = 0, size = bucket[i].size(); j < size; j++) {
+                sorted_array[index++] = bucket[i].get(j);
 
+            }
+        }
+        return sorted_array;
     }
-
-
-
-
-
-
-
-
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
