@@ -26,9 +26,9 @@ public class bucket extends AppCompatActivity {
 
     ArrayAdapter<Float> adapter;
     ArrayAdapter<Float> adapter2;
-    TextView output;
+    TextView output,input;
     EditText number;
-    Button add, sort, confirm;
+    Button add, sort, clear, refresh;
     float[] std_array;
     int i, s, array_size;
 
@@ -40,19 +40,22 @@ public class bucket extends AppCompatActivity {
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.bucket);
 
-        ListView listView = (ListView) findViewById(R.id.list);
-        ListView listView2 = (ListView) findViewById(R.id.list2);
+//        ListView listView = (ListView) findViewById(R.id.list);
+//        ListView listView2 = (ListView) findViewById(R.id.list2);
 
         number = findViewById(R.id.txt_number);
         add = findViewById(R.id.btn_add);
-        sort = findViewById(R.id.btn_save);
-        confirm = findViewById(R.id.btn_confirm);
+        sort = findViewById(R.id.btn_sort);
+        refresh = findViewById(R.id.btn_refresh);
+        clear = findViewById(R.id.btn_clear);
+        input = findViewById(R.id.array_input);
+        output = findViewById(R.id.array_output);
 
         adapter = new ArrayAdapter<Float>(this, R.layout.list_item, arrayList);
         adapter2 = new ArrayAdapter<Float>(this, R.layout.list_item2, (List<Float>) arrayList2);
 
-        listView.setAdapter(adapter);
-        listView2.setAdapter(adapter2);
+//        listView.setAdapter(adapter);
+//        listView2.setAdapter(adapter2);
 
 
         add.setOnClickListener(new View.OnClickListener() {
@@ -60,7 +63,8 @@ public class bucket extends AppCompatActivity {
             public void onClick(View view) {
                 if(number!=null) {
                     arrayList.add(Float.parseFloat(number.getText().toString()));
-                    adapter.notifyDataSetChanged();
+                    input.setText(arrayList.toString());
+                   // adapter.notifyDataSetChanged();
                     number.setText("");
 
                     Toast.makeText(getApplicationContext(), arrayList.toString(), Toast.LENGTH_LONG).show();
@@ -72,18 +76,19 @@ public class bucket extends AppCompatActivity {
                 }
             }
         });
-        confirm.setOnClickListener(new View.OnClickListener() {
+        clear.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                array_size = s;
-                Toast.makeText(getApplicationContext(), "Input array confirmed. No more change", Toast.LENGTH_LONG).show();
+                input.setText("");
+                arrayList.clear();
             }
-
         });
 
         sort.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                array_size = s;
+                Toast.makeText(getApplicationContext(), "Input array confirmed. No more change", Toast.LENGTH_LONG).show();
                 final float[] arr = new float[arrayList.size()];
                 int index = 0;
                 for (final Float value: arrayList) {
@@ -91,10 +96,19 @@ public class bucket extends AppCompatActivity {
                 }
                 bucketSort(arr, arrayList.size());
                 std_array = bucketSort(arr, arrayList.size());
+                output.setText(Arrays.toString(std_array));
 
-                Toast.makeText(getApplicationContext(),Arrays.toString(std_array), Toast.LENGTH_LONG).show();
-               // output.setText(Arrays.toString(std_array));
+              //  Toast.makeText(getApplicationContext(),Arrays.toString(std_array), Toast.LENGTH_LONG).show();
 
+            }
+        });
+        refresh.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                input.setText("");
+                output.setText("");
+                arrayList.clear();
+                std_array = null;
             }
         });
     }
@@ -109,7 +123,6 @@ public class bucket extends AppCompatActivity {
             bucket[i] = new ArrayList<Float>();
 
         float[] sorted_array = new float[arr.length];
-
 
         // Add elements into the buckets
         for (int i = 0; i < n; i++) {
