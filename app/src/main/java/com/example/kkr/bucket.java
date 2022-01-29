@@ -47,7 +47,6 @@ public class bucket extends AppCompatActivity {
         add = findViewById(R.id.btn_add);
         sort = findViewById(R.id.btn_save);
         confirm = findViewById(R.id.btn_confirm);
-        output = findViewById(R.id.textView2);
 
         adapter = new ArrayAdapter<Float>(this, R.layout.list_item, arrayList);
         adapter2 = new ArrayAdapter<Float>(this, R.layout.list_item2, (List<Float>) arrayList2);
@@ -59,15 +58,18 @@ public class bucket extends AppCompatActivity {
         add.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                arrayList.add(Float.parseFloat(number.getText().toString()));
-                adapter.notifyDataSetChanged();
-                number.setText("");
+                if(number!=null) {
+                    arrayList.add(Float.parseFloat(number.getText().toString()));
+                    adapter.notifyDataSetChanged();
+                    number.setText("");
 
-                Toast.makeText(getApplicationContext(), arrayList.toString(), Toast.LENGTH_LONG).show();
-                s = arrayList.size();
+                    Toast.makeText(getApplicationContext(), arrayList.toString(), Toast.LENGTH_LONG).show();
+                    s = arrayList.size();
 
-                Log.d("eeeeeeeeeeeeeeeeeeeeeee", String.valueOf(s));
-
+                    Log.d("eeeeeeeeeeeeeeeeeeeeeee", String.valueOf(s));
+                }else{
+                    Toast.makeText(getApplicationContext(), "Enter number before click Add button", Toast.LENGTH_LONG).show();
+                }
             }
         });
         confirm.setOnClickListener(new View.OnClickListener() {
@@ -91,6 +93,7 @@ public class bucket extends AppCompatActivity {
                 std_array = bucketSort(arr, arrayList.size());
 
                 Toast.makeText(getApplicationContext(),Arrays.toString(std_array), Toast.LENGTH_LONG).show();
+               // output.setText(Arrays.toString(std_array));
 
             }
         });
@@ -110,21 +113,20 @@ public class bucket extends AppCompatActivity {
 
         // Add elements into the buckets
         for (int i = 0; i < n; i++) {
-            int bucketIndex = (int) arr[i] * 10;
+            int bucketIndex = (int) arr[i] / 100;
             bucket[bucketIndex].add(arr[i]);
         }
 
         // Sort the elements of each bucket
-        for (int i = 0; i < n; i++) {
+        for (int i = 0; i < 11; i++) {
             Collections.sort((bucket[i]));
         }
 
         // Get the sorted array
         int index = 0;
-        for (int i = 0; i < n; i++) {
+        for (int i = 0; i < 11; i++) {
             for (int j = 0, size = bucket[i].size(); j < size; j++) {
                 sorted_array[index++] = bucket[i].get(j);
-
             }
         }
         return sorted_array;
