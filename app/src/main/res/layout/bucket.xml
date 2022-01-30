@@ -100,7 +100,7 @@
             android:textColor="@color/black"
             android:layout_weight="2"
             android:id="@+id/array_input"
-            android:text="yyy">
+            android:text="[...]">
 
         </TextView>
 
@@ -168,7 +168,7 @@
             android:layout_weight="2"
             android:id="@+id/array_output"
             android:layout_marginBottom="20dp"
-            android:text="zzz">
+            android:text="[...]">
 
         </TextView>
 

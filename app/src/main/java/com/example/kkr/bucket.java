@@ -67,7 +67,7 @@ public class bucket extends AppCompatActivity {
                    // adapter.notifyDataSetChanged();
                     number.setText("");
 
-                    Toast.makeText(getApplicationContext(), arrayList.toString(), Toast.LENGTH_LONG).show();
+//                    Toast.makeText(getApplicationContext(), arrayList.toString(), Toast.LENGTH_LONG).show();
                     s = arrayList.size();
 
                     Log.d("eeeeeeeeeeeeeeeeeeeeeee", String.valueOf(s));
@@ -88,7 +88,7 @@ public class bucket extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 array_size = s;
-                Toast.makeText(getApplicationContext(), "Input array confirmed. No more change", Toast.LENGTH_LONG).show();
+                Toast.makeText(getApplicationContext(), "Input array confirmed. No more changes..", Toast.LENGTH_LONG).show();
                 final float[] arr = new float[arrayList.size()];
                 int index = 0;
                 for (final Float value: arrayList) {
