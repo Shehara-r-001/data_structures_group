@@ -380,6 +380,19 @@ public class btree extends AppCompatActivity {
         }
     }
 
+    private void FindKeys(int a, int b, Node x, Stack<Integer> st) {
+        int i = 0;
+        for (i = 0; i < x.n && x.key[i] < b; i++) {
+            if (x.key[i] > a) {
+                st.push(x.key[i]);
+            }
+        }
+        if (!x.leaf) {
+            for (int j = 0; j < i + 1; j++) {
+                FindKeys(a, b, x.child[j], st);
+            }
+        }
+    }
 
 
 }
