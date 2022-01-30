@@ -59,15 +59,27 @@
 
         <Button
             android:id="@+id/btn_add"
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginHorizontal="120dp"
-            android:layout_gravity="center"
-            android:text="Add"
+            android:layout_marginHorizontal="20dp"
+            android:gravity="center"
+            android:text="ADD"
             android:textColor="@color/white"
             android:textSize="14dp"
             android:textStyle="bold"
-            android:layout_marginBottom="15dp"
+            android:fontFamily="@font/abril_fatface"
+            android:layout_weight="1"/>
+
+        <Button
+            android:id="@+id/btn_delete"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="20dp"
+            android:gravity="center"
+            android:text="DELETE"
+            android:textColor="@color/white"
+            android:textSize="14dp"
+            android:textStyle="bold"
             android:fontFamily="@font/abril_fatface"
             android:layout_weight="1"/>
 
