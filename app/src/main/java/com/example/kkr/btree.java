@@ -364,6 +364,22 @@ public class btree extends AppCompatActivity {
         }
     }
 
+    public void Show() {
+        Show(root);
+    }
+
+    private void Show(Node x) {
+        assert (x == null);
+        for (int i = 0; i < x.n; i++) {
+            System.out.print(x.key[i] + " ");
+        }
+        if (!x.leaf) {
+            for (int i = 0; i < x.n + 1; i++) {
+                Show(x.child[i]);
+            }
+        }
+    }
+
 
 
 }
