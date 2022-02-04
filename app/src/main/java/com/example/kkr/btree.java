@@ -24,11 +24,13 @@ public class btree extends AppCompatActivity {
 
     ArrayAdapter<Float> adapter,adapter2;
     EditText EnterNum1,EnterNum2;
-    TextView show;
-    Button BtnAdd,BtnAdd2 , sort, Search;
-    Float [] newArray;
-    Float[] array;
-    int i,s,array_size;
+    TextView show,input,output;
+    Button BtnAdd,BtnAdd2 , sort, Search,delete;
+    //Float [] newArray;
+    //Float[] array;
+    //int i,s,array_size;
+    float[] std_array;
+    int i, s, array_size;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,8 +45,12 @@ public class btree extends AppCompatActivity {
         show = findViewById( R.id.textView2);
         BtnAdd = findViewById(R.id.btn_add1);
         Search=findViewById(R.id.btn_search);
+        input=findViewById(R.id.array_input);
+        output=findViewById(R.id.array_output);
+        delete=findViewById(R.id.btn_delete1);
 
-       // adapter = new ArrayAdapter<Float>(this, R.layout.list_item,arrayList);
+
+        adapter = new ArrayAdapter<Float>(this, R.layout.list_item,arrayList);
        // adapter2 = new ArrayAdapter<Float>(this, R.layout.list_item2,arrayList2);
 
       //  listView.setAdapter(adapter);
@@ -54,26 +60,41 @@ public class btree extends AppCompatActivity {
         BtnAdd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(EnterNum1!=null) {
+                String I=EnterNum1.getText().toString();
+                int l=Integer.parseInt(I);
+                /*if(EnterNum1!=null) {
                     arrayList.add(Float.parseFloat(EnterNum1.getText().toString()));
                     //array[]=EnterNum1.getText().toString();
                     n.add(EnterNum1.getText().toString());
+
                     EnterNum1.setText("");
 
-                    Toast.makeText(getApplicationContext(), arrayList.toString(), Toast.LENGTH_LONG).show();
+
+                    //Toast.makeText(getApplicationContext(), arrayList.toString(), Toast.LENGTH_LONG).show();
                     show.setText(arrayList.toString());
                     s = arrayList.size();
 
                     Log.d("eeeeeeeeeeeeeeeeeeeeeee", String.valueOf(s));
                 }else{
                     Toast.makeText(getApplicationContext(), "Enter number before click Add button", Toast.LENGTH_LONG).show();
-                }
+                }*/
+                btree b=new btree(3);
+                /*final float[] arr = new float[arrayList.size()];
+                int index=0;
+                for(final Float value:arrayList){
+                    arr[index++]=value;
+                }*/
+                b.Insert(l);
+
+
             }
         });
         Search.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(EnterNum1!=null) {
+                String I=EnterNum1.getText().toString();
+                int l=Integer.parseInt(I);
+                /*if(EnterNum1!=null) {
                     if (arrayList.contains(Float.parseFloat(EnterNum2.getText().toString()))) {
                         Toast.makeText(getApplicationContext(), "Number Found", Toast.LENGTH_LONG).show();
                         EnterNum2.setText("");
@@ -83,7 +104,23 @@ public class btree extends AppCompatActivity {
                     }
                 }else{
                     Toast.makeText(getApplicationContext(), "Enter number before click Search button", Toast.LENGTH_LONG).show();
+                }*/
+
+                btree b=new btree(3);
+                if(b.Contain(l)){
+                    output.setText("");
+                    Toast.makeText(getApplicationContext(), "Number Found", Toast.LENGTH_LONG).show();
                 }
+                else {
+                    Toast.makeText(getApplicationContext(), "Number Not Found", Toast.LENGTH_LONG).show();
+                }
+            }
+        });
+
+        delete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                input.setText("");
             }
         });
 
@@ -115,6 +152,25 @@ public class btree extends AppCompatActivity {
     }
 
     private Node root;
+
+    private Node Search(Node x, int key) {
+        int i = 0;
+        if (x == null)
+            return x;
+        for (i = 0; i < x.n; i++) {
+            if (key < x.key[i]) {
+                break;
+            }
+            if (key == x.key[i]) {
+                return x;
+            }
+        }
+        if (x.leaf) {
+            return null;
+        } else {
+            return Search(x.child[i], key);
+        }
+    }
 
 
     private void Split(Node x, int pos, Node y) {
@@ -184,6 +240,26 @@ public class btree extends AppCompatActivity {
             insertValue(x.child[i], k);
         }
 
+    }
+
+    private void Show(Node x) {
+        assert (x == null);
+        for (int i = 0; i < x.n; i++) {
+            System.out.print(x.key[i] + " ");
+        }
+        if (!x.leaf) {
+            for (int i = 0; i < x.n + 1; i++) {
+                Show(x.child[i]);
+            }
+        }
+    }
+
+    public boolean Contain(int k) {
+        if (this.Search(root, k) != null) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
     private void Remove(Node x, int key) {
@@ -364,21 +440,27 @@ public class btree extends AppCompatActivity {
         }
     }
 
+    public void Remove(int key) {
+        Node x = Search(root, key);
+        if (x == null) {
+            return;
+        }
+        Remove(root, key);
+    }
+
+    public void Task(int a, int b) {
+        Stack<Integer> st = new Stack<>();
+        FindKeys(a, b, root, st);
+        while (st.isEmpty() == false) {
+            this.Remove(root, st.pop());
+        }
+    }
+
     public void Show() {
         Show(root);
     }
 
-    private void Show(Node x) {
-        assert (x == null);
-        for (int i = 0; i < x.n; i++) {
-            System.out.print(x.key[i] + " ");
-        }
-        if (!x.leaf) {
-            for (int i = 0; i < x.n + 1; i++) {
-                Show(x.child[i]);
-            }
-        }
-    }
+
 
     private void FindKeys(int a, int b, Node x, Stack<Integer> st) {
         int i = 0;

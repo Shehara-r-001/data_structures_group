@@ -97,6 +97,40 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
+        android:orientation="vertical"
+        android:layout_weight="2">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/abril_fatface"
+            android:textStyle="bold"
+            android:textSize="25sp"
+            android:gravity="center"
+            android:textColor="@color/black"
+            android:layout_weight="1"
+            android:text="Inserted Array">
+
+        </TextView>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/abril_fatface"
+            android:textStyle="bold"
+            android:textSize="15dp"
+            android:gravity="center"
+            android:textColor="@color/black"
+            android:layout_weight="2"
+            android:id="@+id/array_input"
+            android:text="[...]">
+
+        </TextView>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
         android:orientation="horizontal"
         android:layout_weight="6"
         android:padding="10dp">
@@ -109,6 +143,21 @@
             android:layout_weight="1">
 
         </ListView>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/abril_fatface"
+            android:textStyle="bold"
+            android:textSize="15dp"
+            android:gravity="center"
+            android:textColor="@color/black"
+            android:layout_weight="2"
+            android:id="@+id/array_output"
+            android:layout_marginBottom="20dp"
+            android:text="[...]">
+
+        </TextView>
 
 
 

@@ -5,6 +5,9 @@
       <map>
         <entry key="..\:/3rd year/3rd/2nd sem/IT/data_structures_group/app/src/main/res/layout/btree.xml" value="0.2" />
         <entry key="..\:/3rd year/3rd/2nd sem/IT/data_structures_group/app/src/main/res/layout/bucket.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/DELL/AndroidStudioProjects/data_structures_group/app/src/main/res/layout/btree.xml" value="0.13994565217391305" />
+        <entry key="..\:/Users/DELL/AndroidStudioProjects/data_structures_group/app/src/main/res/layout/bucket.xml" value="0.13994565217391305" />
+        <entry key="..\:/Users/DELL/AndroidStudioProjects/data_structures_group/app/src/main/res/layout/list_item.xml" value="0.13994565217391305" />
         <entry key="..\:/Users/eshan/Desktop/UOC/EIT Physics/Android projects/data_structures_group/app/src/main/res/layout/activity_main.xml" value="0.16666666666666666" />
         <entry key="..\:/Users/eshan/Desktop/UOC/EIT Physics/Android projects/data_structures_group/app/src/main/res/layout/btree.xml" value="0.16666666666666666" />
         <entry key="..\:/Users/eshan/Desktop/UOC/EIT Physics/Android projects/data_structures_group/app/src/main/res/layout/bucket.xml" value="0.2" />
@@ -13,7 +16,7 @@
       </map>
     </option>
   </component>
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" project-jdk-name="11" project-jdk-type="JavaSDK">
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="11" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/build/classes" />
   </component>
   <component name="ProjectType">
