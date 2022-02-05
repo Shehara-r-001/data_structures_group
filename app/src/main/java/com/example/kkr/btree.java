@@ -131,6 +131,9 @@ public class btree extends AppCompatActivity {
             public void onClick(View v) {
                 input.setText("");
                 arrayList.clear();
+                String I=EnterNum1.getText().toString();
+                int l=Integer.parseInt(I);
+                b.Remove(l);
             }
         });
 
@@ -138,6 +141,10 @@ public class btree extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                //String p = b.getText();
+                b.Show();
+                output.setText("");
+
+
 
 
             }
@@ -264,9 +271,12 @@ public class btree extends AppCompatActivity {
         }
 
     }
+    public void Show() {
+        Show(root);
+    }
 
     private void Show(Node x) {
-        assert (x == null);
+        //assert (x == null);
         for (int i = 0; i < x.n; i++) {
             System.out.print(x.key[i] + " ");
         }
@@ -479,9 +489,7 @@ public class btree extends AppCompatActivity {
         }
     }
 
-    public void Show() {
-        Show(root);
-    }
+
 
 
 
