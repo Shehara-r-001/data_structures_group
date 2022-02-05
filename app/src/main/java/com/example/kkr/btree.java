@@ -3,16 +3,15 @@ package com.example.kkr;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Stack;
 
@@ -24,44 +23,44 @@ public class btree extends AppCompatActivity {
 
     ArrayAdapter<Float> adapter,adapter2;
     EditText EnterNum1,EnterNum2;
-    TextView show,input,output;
-    Button BtnAdd,BtnAdd2 , sort, Search,delete;
-    //Float [] newArray;
-    //Float[] array;
-    //int i,s,array_size;
-    float[] std_array;
-    int i, s, array_size;
+    TextView input,output;
+    Button BtnAdd,confirm ,sort, Search,delete;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate( savedInstanceState );
-        setContentView( R.layout.activity_btree );
+        setContentView( R.layout.btree );
 
-     //   ListView listView = (ListView) findViewById(R.id.list);
+        ListView listView = (ListView) findViewById(R.id.list);
     //    ListView listView2 = (ListView) findViewById(R.id.list2);
 
         EnterNum1 = findViewById(R.id.txt_number);
         EnterNum2 = findViewById(R.id.txt_number2);
-        show = findViewById( R.id.textView2);
-        BtnAdd = findViewById(R.id.btn_add1);
-        Search=findViewById(R.id.btn_search);
+        //show = findViewById( R.id.textView2);
+        BtnAdd = findViewById(R.id.btn_insert1);
+        Search=findViewById(R.id.btn_btree);
         input=findViewById(R.id.array_input);
         output=findViewById(R.id.array_output);
         delete=findViewById(R.id.btn_delete1);
+        confirm=findViewById(R.id.btn_confirm1);
+
+        adapter = new ArrayAdapter<Float>(this, R.layout.list_item, arrayList);
 
 
-        adapter = new ArrayAdapter<Float>(this, R.layout.list_item,arrayList);
-       // adapter2 = new ArrayAdapter<Float>(this, R.layout.list_item2,arrayList2);
 
-      //  listView.setAdapter(adapter);
-      //  listView2.setAdapter(adapter2);
+        btree b=new btree(3);
 
 
         BtnAdd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
                 String I=EnterNum1.getText().toString();
                 int l=Integer.parseInt(I);
+                //btree b=new btree(3);
+                b.Insert(l);
+
                 /*if(EnterNum1!=null) {
                     arrayList.add(Float.parseFloat(EnterNum1.getText().toString()));
                     //array[]=EnterNum1.getText().toString();
@@ -71,20 +70,22 @@ public class btree extends AppCompatActivity {
 
 
                     //Toast.makeText(getApplicationContext(), arrayList.toString(), Toast.LENGTH_LONG).show();
-                    show.setText(arrayList.toString());
-                    s = arrayList.size();
+                    input.setText(arrayList.toString());
+                    int s = arrayList.size();
 
                     Log.d("eeeeeeeeeeeeeeeeeeeeeee", String.valueOf(s));
+
+
+
+
                 }else{
                     Toast.makeText(getApplicationContext(), "Enter number before click Add button", Toast.LENGTH_LONG).show();
                 }*/
-                btree b=new btree(3);
-                /*final float[] arr = new float[arrayList.size()];
-                int index=0;
-                for(final Float value:arrayList){
-                    arr[index++]=value;
-                }*/
-                b.Insert(l);
+
+
+
+
+
 
 
             }
@@ -92,8 +93,10 @@ public class btree extends AppCompatActivity {
         Search.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String I=EnterNum1.getText().toString();
+                /*String I=EnterNum1.getText().toString();
                 int l=Integer.parseInt(I);
+                btree b=new btree(3);
+                b.Insert(l);*/
                 /*if(EnterNum1!=null) {
                     if (arrayList.contains(Float.parseFloat(EnterNum2.getText().toString()))) {
                         Toast.makeText(getApplicationContext(), "Number Found", Toast.LENGTH_LONG).show();
@@ -102,11 +105,17 @@ public class btree extends AppCompatActivity {
                         Toast.makeText(getApplicationContext(), "Number Not Found", Toast.LENGTH_LONG).show();
                         EnterNum2.setText("");
                     }
+
+
                 }else{
                     Toast.makeText(getApplicationContext(), "Enter number before click Search button", Toast.LENGTH_LONG).show();
                 }*/
 
-                btree b=new btree(3);
+
+
+                String I=EnterNum1.getText().toString();
+                int l=Integer.parseInt(I);
+                //btree b=new btree(3);
                 if(b.Contain(l)){
                     output.setText("");
                     Toast.makeText(getApplicationContext(), "Number Found", Toast.LENGTH_LONG).show();
@@ -121,11 +130,23 @@ public class btree extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 input.setText("");
+                arrayList.clear();
+            }
+        });
+
+        confirm.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+               //String p = b.getText();
+
+
             }
         });
 
 
     }
+
+
     private int T;
 
     public class Node {
@@ -143,6 +164,8 @@ public class btree extends AppCompatActivity {
             return -1;
         };
     }
+
+    public btree(){}
 
     public btree(int t) {
         T = t;
@@ -215,7 +238,7 @@ public class btree extends AppCompatActivity {
     }
 
 
-    final private void insertValue(Node x, int k) {
+    private void insertValue(Node x, int k) {
 
         if (x.leaf) {
             int i = 0;
