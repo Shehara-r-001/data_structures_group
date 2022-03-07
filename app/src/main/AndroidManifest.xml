@@ -9,7 +9,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Kkr">
-        <activity android:name=".bucket"></activity>
+        <activity android:name=".bucket" />
         <activity android:name=".btree" />
         <activity android:name=".MainActivity">
             <intent-filter>

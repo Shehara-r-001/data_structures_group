@@ -1,0 +1,206 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    tools:context=".number_input">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1.5">
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginHorizontal="40dp"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            app:startIconDrawable="@drawable/ic_baseline_calculate_24">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Enter the number"
+                android:id="@+id/txt_btree_num"
+                android:layout_weight="1"
+                android:fontFamily="@font/abril_fatface"
+                android:textColor="@color/black"
+                android:inputType="numberDecimal"/>
+
+        </com.google.android.material.textfield.TextInputLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:layout_weight="1">
+
+        <Button
+            android:id="@+id/btn_number_add"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="110dp"
+            android:gravity="center"
+            android:text="add"
+            android:textColor="@color/white"
+            android:textSize="14dp"
+            android:textStyle="bold"
+            android:fontFamily="@font/abril_fatface"
+            android:layout_weight="1"/>
+
+
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:orientation="vertical"
+        android:layout_weight="2">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/abril_fatface"
+            android:textStyle="bold"
+            android:textSize="22sp"
+            android:gravity="center"
+            android:textColor="@color/black"
+            android:layout_weight="1"
+            android:text="Inserted Array">
+
+        </TextView>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/abril_fatface"
+            android:textStyle="bold"
+            android:textSize="17dp"
+            android:gravity="center"
+            android:textColor="@color/black"
+            android:layout_weight="1.5"
+            android:id="@+id/array_number_input"
+            android:text="">
+
+        </TextView>
+
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:layout_weight="1">
+
+        <Button
+            android:id="@+id/btn_number_refresh"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="110dp"
+            android:gravity="center"
+            android:text="refresh"
+            android:textColor="@color/white"
+            android:textSize="14dp"
+            android:textStyle="bold"
+            android:fontFamily="@font/abril_fatface"
+            android:layout_weight="1"/>
+
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:layout_weight="1">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/abril_fatface"
+            android:textStyle="bold"
+            android:textSize="25sp"
+            android:gravity="center"
+            android:textColor="@color/black"
+            android:layout_weight="1"
+            android:text="Output">
+
+        </TextView>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:gravity="center"
+        android:layout_weight="1.5">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="110dp"
+            android:fontFamily="@font/abril_fatface"
+            android:textStyle="bold"
+            android:textSize="20sp"
+            android:gravity="center"
+            android:textColor="@color/black"
+            android:layout_weight="1"
+            android:id="@+id/root1"
+            android:text=""/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:layout_weight="2">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/abril_fatface"
+            android:textStyle="bold"
+            android:textSize="20sp"
+            android:gravity="center"
+            android:textColor="@color/black"
+            android:layout_weight="2"
+            android:id="@+id/node_11"
+            android:layout_margin="8dp"
+            android:text="">
+        </TextView>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/abril_fatface"
+            android:textStyle="bold"
+            android:textSize="20sp"
+            android:gravity="center"
+            android:textColor="@color/black"
+            android:layout_weight="2"
+            android:id="@+id/node_22"
+            android:text="">
+        </TextView>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/abril_fatface"
+            android:textStyle="bold"
+            android:textSize="20sp"
+            android:gravity="center"
+            android:textColor="@color/black"
+            android:layout_weight="2"
+            android:id="@+id/node_33"
+            android:layout_margin="8dp"
+            android:text="">
+        </TextView>
+
+    </LinearLayout>
+
+
+
+
+</LinearLayout>

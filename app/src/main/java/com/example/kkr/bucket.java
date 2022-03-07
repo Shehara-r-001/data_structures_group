@@ -22,10 +22,8 @@ import java.util.*;
 
 public class bucket extends AppCompatActivity {
     ArrayList<Float> arrayList = new ArrayList<>();
-    List<Float> arrayList2 = new ArrayList<>();
-
     ArrayAdapter<Float> adapter;
-    ArrayAdapter<Float> adapter2;
+
     TextView output,input;
     EditText number;
     Button add, sort, clear, refresh;
@@ -35,6 +33,7 @@ public class bucket extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
@@ -52,7 +51,7 @@ public class bucket extends AppCompatActivity {
         output = findViewById(R.id.array_output);
 
         adapter = new ArrayAdapter<Float>(this, R.layout.list_item, arrayList);
-        adapter2 = new ArrayAdapter<Float>(this, R.layout.list_item2, (List<Float>) arrayList2);
+
 
 //        listView.setAdapter(adapter);
 //        listView2.setAdapter(adapter2);
@@ -79,8 +78,19 @@ public class bucket extends AppCompatActivity {
         clear.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                input.setText("");
-                arrayList.clear();
+                if(number!=null) {
+                    arrayList.remove(Float.parseFloat(number.getText().toString()));
+                    input.setText(arrayList.toString());
+                    // adapter.notifyDataSetChanged();
+                    number.setText("");
+
+                    Toast.makeText(getApplicationContext(), arrayList.toString(), Toast.LENGTH_LONG).show();
+                    s = arrayList.size();
+
+                    Log.d("eeeeeeeeeeeeeeeeeeeeeee", String.valueOf(s));
+                }else{
+                    Toast.makeText(getApplicationContext(), "Enter number before click Remove button", Toast.LENGTH_LONG).show();
+                }
             }
         });
 

@@ -1,66 +1,48 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
-    tools:context=".bucket">
+    tools:context=".array_input">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1">
+        android:layout_weight="1.5">
 
-        <TextView
+        <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textAlignment="center"
-            android:fontFamily="@font/abril_fatface"
             android:layout_gravity="center"
-            android:text="BUCKET SORT"
-            android:textColor="@color/black"
-            android:textSize="30sp"
-            android:textStyle="bold"/>
+            android:layout_marginHorizontal="40dp"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            app:startIconDrawable="@drawable/ic_baseline_calculate_24">
 
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Enter the number"
+                android:id="@+id/txt_btree_array"
+                android:layout_weight="1"
+                android:fontFamily="@font/abril_fatface"
+                android:textColor="@color/black"
+                android:inputType="numberDecimal"/>
+
+        </com.google.android.material.textfield.TextInputLayout>
     </LinearLayout>
 
-   <LinearLayout
-       android:layout_width="match_parent"
-       android:layout_height="0dp"
-       android:layout_weight="1.5">
-
-       <com.google.android.material.textfield.TextInputLayout
-           android:layout_width="match_parent"
-           android:layout_height="wrap_content"
-           android:layout_gravity="center"
-           android:layout_marginHorizontal="40dp"
-           style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-           app:startIconDrawable="@drawable/ic_baseline_calculate_24">
-
-           <com.google.android.material.textfield.TextInputEditText
-               android:layout_width="match_parent"
-               android:layout_height="wrap_content"
-               android:hint="Enter the number"
-               android:id="@+id/txt_number"
-               android:layout_weight="1"
-               android:fontFamily="@font/abril_fatface"
-               android:textColor="@color/black"
-               android:inputType="numberDecimal"/>
-
-       </com.google.android.material.textfield.TextInputLayout>
-
-   </LinearLayout>
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_gravity="center"
+        android:gravity="center"
         android:orientation="horizontal"
         android:layout_weight="1">
 
         <Button
-            android:id="@+id/btn_add"
+            android:id="@+id/btn_btree_add"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="20dp"
@@ -73,7 +55,7 @@
             android:layout_weight="1"/>
 
         <Button
-            android:id="@+id/btn_clear"
+            android:id="@+id/btn_btree_clear"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="20dp"
@@ -97,7 +79,7 @@
             android:layout_height="wrap_content"
             android:fontFamily="@font/abril_fatface"
             android:textStyle="bold"
-            android:textSize="25sp"
+            android:textSize="22sp"
             android:gravity="center"
             android:textColor="@color/black"
             android:layout_weight="1"
@@ -109,11 +91,11 @@
             android:layout_height="wrap_content"
             android:fontFamily="@font/abril_fatface"
             android:textStyle="bold"
-            android:textSize="15dp"
+            android:textSize="17dp"
             android:gravity="center"
             android:textColor="@color/black"
-            android:layout_weight="2"
-            android:id="@+id/array_input"
+            android:layout_weight="1.5"
+            android:id="@+id/array_btree_input"
             android:text="">
 
         </TextView>
@@ -122,17 +104,17 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_gravity="center"
+        android:gravity="center"
         android:orientation="horizontal"
         android:layout_weight="1">
 
         <Button
-            android:id="@+id/btn_sort"
+            android:id="@+id/btn_show"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="20dp"
             android:gravity="center"
-            android:text="sort"
+            android:text="show"
             android:textColor="@color/white"
             android:textSize="14dp"
             android:textStyle="bold"
@@ -140,12 +122,12 @@
             android:layout_weight="1"/>
 
         <Button
-            android:id="@+id/btn_refresh"
+            android:id="@+id/btn_btree_refresh"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="20dp"
             android:gravity="center"
-            android:text="clear"
+            android:text="refresh"
             android:textColor="@color/white"
             android:textSize="14dp"
             android:textStyle="bold"
@@ -156,37 +138,94 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
+        android:gravity="center"
         android:orientation="vertical"
+        android:layout_weight="1">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/abril_fatface"
+            android:textStyle="bold"
+            android:textSize="25sp"
+            android:gravity="center"
+            android:textColor="@color/black"
+            android:layout_weight="1"
+            android:text="Output">
+
+        </TextView>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:gravity="center"
+        android:layout_weight="1.5">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="110dp"
+            android:fontFamily="@font/abril_fatface"
+            android:textStyle="bold"
+            android:textSize="20sp"
+            android:gravity="center"
+            android:textColor="@color/black"
+            android:layout_weight="1"
+            android:id="@+id/root"
+            android:text=""/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:gravity="center"
+        android:orientation="horizontal"
         android:layout_weight="2">
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
             android:fontFamily="@font/abril_fatface"
+            android:textStyle="bold"
+            android:textSize="20sp"
             android:gravity="center"
-            android:text="Sorted Array"
             android:textColor="@color/black"
-            android:textSize="25sp"
-            android:textStyle="bold">
-
+            android:layout_weight="2"
+            android:id="@+id/node_1"
+            android:layout_margin="8dp"
+            android:text="">
         </TextView>
+
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:fontFamily="@font/abril_fatface"
             android:textStyle="bold"
-            android:textSize="15dp"
+            android:textSize="20sp"
             android:gravity="center"
             android:textColor="@color/black"
             android:layout_weight="2"
-            android:id="@+id/array_output"
-            android:layout_marginBottom="20dp"
+            android:id="@+id/node_2"
             android:text="">
+        </TextView>
 
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/abril_fatface"
+            android:textStyle="bold"
+            android:textSize="20sp"
+            android:gravity="center"
+            android:textColor="@color/black"
+            android:layout_weight="2"
+            android:id="@+id/node_3"
+            android:layout_margin="8dp"
+            android:text="">
         </TextView>
 
     </LinearLayout>
+
 
 
 </LinearLayout>
