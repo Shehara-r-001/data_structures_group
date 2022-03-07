@@ -26,7 +26,7 @@ public class bucket extends AppCompatActivity {
 
     TextView output,input;
     EditText number;
-    Button add, sort, clear, refresh;
+    Button add, delete, sort, clear, refresh;
     float[] std_array;
     int i, s, array_size;
 
@@ -44,6 +44,7 @@ public class bucket extends AppCompatActivity {
 
         number = findViewById(R.id.txt_number);
         add = findViewById(R.id.btn_add);
+        delete = findViewById(R.id.btn_delete);
         sort = findViewById(R.id.btn_sort);
         refresh = findViewById(R.id.btn_refresh);
         clear = findViewById(R.id.btn_clear);
@@ -66,13 +67,26 @@ public class bucket extends AppCompatActivity {
                    // adapter.notifyDataSetChanged();
                     number.setText("");
 
-                    Toast.makeText(getApplicationContext(), arrayList.toString(), Toast.LENGTH_LONG).show();
+//                    Toast.makeText(getApplicationContext(), arrayList.toString(), Toast.LENGTH_LONG).show();
                     s = arrayList.size();
 
                     Log.d("eeeeeeeeeeeeeeeeeeeeeee", String.valueOf(s));
                 }else{
                     Toast.makeText(getApplicationContext(), "Enter number before click Add button", Toast.LENGTH_LONG).show();
                 }
+            }
+        });
+        delete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                arrayList.remove(Float.parseFloat(number.getText().toString()));
+                input.setText(arrayList.toString());
+                number.setText("");
+
+                Toast.makeText(getApplicationContext(), arrayList.toString(), Toast.LENGTH_LONG).show();
+                s = arrayList.size();
+                Log.d("eeeeeeeeeeeeeeeeeeeeeee", String.valueOf(s));
+
             }
         });
         clear.setOnClickListener(new View.OnClickListener() {
@@ -98,7 +112,7 @@ public class bucket extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 array_size = s;
-                Toast.makeText(getApplicationContext(), "Input array confirmed. No more change", Toast.LENGTH_LONG).show();
+                Toast.makeText(getApplicationContext(), "Input array confirmed. No more changes..", Toast.LENGTH_LONG).show();
                 final float[] arr = new float[arrayList.size()];
                 int index = 0;
                 for (final Float value: arrayList) {
